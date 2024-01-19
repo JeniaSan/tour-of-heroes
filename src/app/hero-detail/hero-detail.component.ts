@@ -15,6 +15,7 @@ import { HeroService } from '../hero.service';
   imports: [FormsModule, NgIf, UpperCasePipe],
 })
 export class HeroDetailComponent {
+
   constructor(
     private route: ActivatedRoute,
     private heroService: HeroService,
@@ -36,4 +37,12 @@ export class HeroDetailComponent {
   goBack(): void {
     this.location.back();
   }
+
+  save(): void {
+    if (this.hero) {
+      this.heroService.updateHero(this.hero)
+        .subscribe(() => this.goBack());
+    }
+  }
+
 }
